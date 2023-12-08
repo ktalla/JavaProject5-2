@@ -19,7 +19,7 @@
             android:name=".BuildYourOwn"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".SpecialtyPizzas"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

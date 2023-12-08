@@ -25,58 +25,61 @@
 
     <ImageButton
         android:id="@+id/specialtyPizzasButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="138dp"
+        android:layout_height="125dp"
         android:layout_marginEnd="76dp"
+        android:src="@drawable/specialty_pizzas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buildYourOwnButton"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/storeOrdersButton"
-        app:layout_constraintTop_toBottomOf="@+id/mainMenuTitle"
-        app:layout_constraintVertical_bias="0.152"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.291"
+        android:scaleType="fitCenter"/>
 
     <ImageButton
         android:id="@+id/buildYourOwnButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_width="144dp"
+        android:layout_height="129dp"
+        android:layout_marginTop="168dp"
         android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        android:scaleType="fitCenter"
+        android:src="@drawable/build_your_own"
+        app:layout_constraintBottom_toTopOf="@+id/yourCartButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.841"
+        app:layout_constraintHorizontal_bias="0.846"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainMenuTitle"
-        app:layout_constraintVertical_bias="0.99"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.235" />
 
     <ImageButton
         android:id="@+id/storeOrdersButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="136dp"
+        android:layout_height="131dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="76dp"
         android:layout_marginBottom="172dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/store_orders"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toStartOf="@+id/yourCartButton"
+        app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/specialtyPizzasButton"
-        app:layout_constraintVertical_bias="1.0"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/yourCartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="128dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/orders"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.855"
+        app:layout_constraintHorizontal_bias="0.848"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.714"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintVertical_bias="0.714" />
 
     <TextView
         android:id="@+id/specialtyPizzasText"
@@ -120,7 +123,7 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintHorizontal_bias="0.231"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/storeOrdersButton"
         app:layout_constraintVertical_bias="0.0" />
@@ -137,7 +140,7 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.924"
+        app:layout_constraintHorizontal_bias="0.932"
         app:layout_constraintStart_toEndOf="@+id/storeOrdersText"
         app:layout_constraintTop_toBottomOf="@+id/yourCartButton"
         app:layout_constraintVertical_bias="0.0" />

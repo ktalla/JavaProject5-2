@@ -14,7 +14,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class SpecialtyPizzas extends AppCompatActivity {
 
     private Spinner spinner;
-    private static final String[] specialPizzas = {"Deluxe, Supreme, Meatzza, Seafood, Pepperoni"};
+    private static final String[] specialPizzas = {"Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni"};
     private ImageView pizzaImage;
 
     @Override
@@ -22,8 +22,8 @@ public class SpecialtyPizzas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.specialty_pizzas);
 
-        spinner = (Spinner) findViewById(R.id.pizzaTypes);
-        pizzaImage = (ImageView) findViewById(R.id.specialPizzaImage);
+        spinner = findViewById(R.id.pizzaTypes);
+        pizzaImage = findViewById(R.id.specialPizzaImage);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(SpecialtyPizzas.this, android.R.layout.simple_spinner_item, specialPizzas);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JavaProject5">
         <activity
-            android:name=".StoreOrders"
+            android:name=".StoreOrdersActivity"
             android:exported="false" />
         <activity
             android:name=".YourCart"

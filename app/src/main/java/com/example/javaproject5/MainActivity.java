@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton specialtyPizzas;
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         storeOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(MainActivity.this, StoreOrders.class);
+                Intent intent = new Intent(MainActivity.this, StoreOrdersActivity.class);
                 startActivity(intent);
             }
         });

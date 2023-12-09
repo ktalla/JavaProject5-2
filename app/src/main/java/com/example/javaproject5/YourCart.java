@@ -1,23 +1,41 @@
 package com.example.javaproject5;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AbsListView;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class YourCart extends AppCompatActivity {
 
-    RecyclerView recyclerView;
     TextView orderNumber;
     TextView subTotal;
     TextView salesTax;
     TextView orderTotal;
+
     private int orderNum; //number integer of current order
     private ArrayList<Pizza> pizzas; //array list for all pizzas in current order
     private static final double TAXRATE = 0.06625; //tax rate for every order
+
+    private static final DecimalFormat df = new DecimalFormat( "#.00" ); //formating code
+    private Singleton singleton = Singleton.getInstance();
+    private Order currOrder = singleton.getOrder();
+    private ListView listView;
+    private ArrayList<String> pizzaDetails = new ArrayList<String>();
+    private ArrayAdapter<String> arrayAdapter;
+    private Button placeOrder;
+    private Button removePizza;
+    private Button clearOrder;
 
 
 
@@ -26,17 +44,92 @@ public class YourCart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.your_cart);
 
-        recyclerView = findViewById(R.id.cartRecyclerView);
         orderNumber = findViewById(R.id.orderNumberText);
         subTotal = findViewById(R.id.subTotalPriceText);
         salesTax = findViewById(R.id.salesTaxPriceText);
         orderTotal = findViewById(R.id.orderTotalPriceText);
+        listView = findViewById(R.id.orderListView);
 
+        placeOrder = findViewById(R.id.placeOrderButton);
+        removePizza = findViewById(R.id.removeButton);
+        clearOrder = findViewById(R.id.clearButton);
+
+        for(Pizza pizza: currOrder.getPizzas()){
+            String details = this.getPizzaType(pizza) + " " + pizza.getSize() + ", ";
+            details+= pizza.getSauce().toString() + ", Toppings: ";
+            for(Topping tp: pizza.getToppings()){
+                details+= tp.toString() + ", ";
+            }
+            details+= "$" + pizza.price();
+            pizzaDetails.add(details);
+        }
+        arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
+        listView.setAdapter(arrayAdapter);
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+        orderNumber.setText(singleton.getCurrentOrderNum()+"");
+
+        placeOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(singleton.getStoreOrders()!=null){
+                    singleton.getStoreOrders().placeOrder(currOrder);
+                }
+                else{
+                    singleton.initializeStoreOrders(new ArrayList<Order>());
+                    singleton.getStoreOrders().placeOrder(currOrder);
+                }
+                singleton.setOrder(null);
+                pizzaDetails.clear();
+                arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
+                listView.setAdapter(arrayAdapter);
+                listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+            }
+        });
+
+        removePizza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (currOrder == null || currOrder.getPizzas().size() == 0)
+                    return;
+                int index = listView.getCheckedItemPosition();
+                if(index>0)
+                    return;
+                pizzaDetails.remove(index);
+                arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
+                listView.setAdapter(arrayAdapter);
+                listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+                currOrder.removePizza(currOrder.getPizzas().get(index));
+                singleton.setOrder(currOrder);
+            }
+        });
+
+        clearOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pizzaDetails.clear();
+                arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
+                listView.setAdapter(arrayAdapter);
+                currOrder.clearOrder();
+                singleton.setOrder(currOrder);
+            }
+        });
 
 
     }
-
-
-
-
+    private String getPizzaType(Pizza p) {
+        if (p instanceof DeluxePizza)
+            return ((DeluxePizza) p).getPizzaType();
+        if (p instanceof SupremePizza)
+            return ((SupremePizza) p).getPizzaType();
+        if (p instanceof PepperoniPizza)
+            return ((PepperoniPizza) p).getPizzaType();
+        if (p instanceof MeatzzaPizza)
+            return ((MeatzzaPizza) p).getPizzaType();
+        if (p instanceof SeafoodPizza)
+            return ((SeafoodPizza) p).getPizzaType();
+//        if (p instanceof BuildYourOwnPizza)
+//            return ((BuildYourOwnPizza) p).getPizzaType();
+        return "";
+    }
 }

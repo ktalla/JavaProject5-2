@@ -7,7 +7,7 @@
     tools:context=".SpecialtyPizzas">
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/sizeGroup"
         android:layout_width="188dp"
         android:layout_height="158dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -61,7 +61,7 @@
         app:layout_constraintVertical_bias="0.697" />
 
     <RadioGroup
-        android:id="@+id/radioGroup2"
+        android:id="@+id/sauceGroup"
         android:layout_width="188dp"
         android:layout_height="112dp"
         android:layout_marginTop="28dp"
@@ -69,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/sizeGroup"
         app:layout_constraintVertical_bias="0.0">
 
         <RadioButton
@@ -157,7 +157,7 @@
         app:layout_constraintVertical_bias="0.794" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/specialtyOrderButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Place Order"
@@ -167,16 +167,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.901" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="123dp"
-        android:layout_height="178dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.895"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522" />
 
     <TextView
         android:id="@+id/textView3"
@@ -190,5 +180,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.367" />
+
+    <ListView
+        android:id="@+id/toppingsListView"
+        android:layout_width="168dp"
+        android:layout_height="192dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.934"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.543" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

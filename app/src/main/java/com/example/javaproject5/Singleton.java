@@ -9,6 +9,16 @@ import java.util.ArrayList;
         private Order order;
         private StoreOrders storeOrders;
 
+        public Pizza getPizza() {
+            return pizza;
+        }
+
+        public void setPizza(Pizza pizza) {
+            this.pizza = pizza;
+        }
+
+        private Pizza pizza;
+
         private boolean orderAdded = false;
 
         public static Singleton getInstance(){
@@ -50,7 +60,7 @@ import java.util.ArrayList;
         public int getCurrentOrderNum(){
             if(storeOrders!=null){
                 if(storeOrders.getOrders()!=null)
-                    return storeOrders.getOrders().size()+1;
+                    return StoreOrders.getNextOrderNumber();
                 else
                     return 1;
             }

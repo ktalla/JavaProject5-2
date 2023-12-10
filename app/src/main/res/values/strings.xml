@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">JavaProject5</string>
     <string name="special_pizza_dropdown">Select a Pizza</string>
+    <string name="ru_pizza_store">RU Pizza Store</string>
+    <string name="specialty_pizzas">Specialty Pizza</string>
+    <string name="build_your_own">Build Your Own Pizza</string>
+    <string name="store_orders">Store Orders</string>
+    <string name="view_cart">Your Cart</string>
 
 </resources>

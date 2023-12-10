@@ -27,7 +27,7 @@ public class YourCart extends AppCompatActivity {
     private ArrayList<Pizza> pizzas; //array list for all pizzas in current order
     private static final double TAXRATE = 0.06625; //tax rate for every order
 
-    private static final DecimalFormat df = new DecimalFormat( "#.00" ); //formating code
+    private static final DecimalFormat df = new DecimalFormat( "#.00" ); //formatting code
     private Singleton singleton = Singleton.getInstance();
     private Order currOrder = singleton.getOrder();
     private ListView listView;

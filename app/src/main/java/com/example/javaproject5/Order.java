@@ -19,12 +19,13 @@ public class Order {
      *
      */
     public Order() {
-        //this.orderNumber = StoreOrders.generateOrderNum();
+        this.orderNumber = StoreOrders.generateOrderNum();
         this.pizzas = new ArrayList<Pizza>();
     }
 
     public Order(ArrayList<Pizza> pizzas){
         this.pizzas = pizzas;
+        this.orderNumber = StoreOrders.generateOrderNum();
     }
 
     /**

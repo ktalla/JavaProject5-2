@@ -2,7 +2,10 @@ package com.example.javaproject5;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.Arrays;
 import java.util.List;
 import android.content.DialogInterface;
 import android.media.Image;
@@ -25,87 +28,40 @@ import java.util.ArrayList;
 
 public class SpecialtyPizzas extends AppCompatActivity {
 
-    private Spinner spinner;
-    private static final String[] specialPizzas = {"Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni"};
-    private ImageView pizzaImage;
-    private String pizzaName;
+
+    //private static ArrayList<String> specialPizzas = new ArrayList<>(Arrays.asList("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni"));
+    private RecyclerView recyclerView;
+    private Singleton singleton = Singleton.getInstance();
     private RadioGroup sizeGroup;
-    private Pizza selectedPizza;
     private RadioGroup sauceGroup;
     private CheckBox extraSauce;
     private CheckBox extraCheese;
     private Button placeOrder;
-    private ListView listView;
-    private ArrayList<Topping> toppings;
-    private ArrayAdapter<Topping> arrayAdapter;
-    private Singleton singleton = Singleton.getInstance();
+    private Pizza selectedPizza;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.specialty_pizzas);
+        selectedPizza = singleton.getPizza();
+        recyclerView = findViewById(R.id.recyclerView);
+        List<Item> items = new ArrayList<Item>();
+        items.add(new Item("Deluxe",DeluxePizza.getStandardToppings(), R.drawable.deluxe));
+        items.add(new Item("Supreme",SupremePizza.getStandardToppings(), R.drawable.supreme));
+        items.add(new Item("Meatzza",MeatzzaPizza.getStandardToppings(), R.drawable.meatzza));
+        items.add(new Item("Pepperoni",PepperoniPizza.getStandardToppings(), R.drawable.pepperoni));
+        items.add(new Item("Seafood",SeafoodPizza.getStandardToppings(), R.drawable.seafood));
 
-        spinner = findViewById(R.id.pizzaTypes);
-        listView = findViewById(R.id.toppingsListView);
-        pizzaImage = findViewById(R.id.specialPizzaImage);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(SpecialtyPizzas.this, android.R.layout.simple_spinner_item, specialPizzas);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-                switch (position) {
-                    case 0:
-                        pizzaImage.setImageResource(R.drawable.deluxe);
-                        pizzaName = specialPizzas[0];
-                        toppings = DeluxePizza.getStandardToppings();
-                        arrayAdapter = new ArrayAdapter<Topping>(SpecialtyPizzas.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, toppings);
-                        listView.setAdapter(arrayAdapter);
-                        break;
-                    case 1:
-                        pizzaImage.setImageResource(R.drawable.supreme);
-                        pizzaName = specialPizzas[1];
-                        toppings = SupremePizza.getStandardToppings();
-                        arrayAdapter = new ArrayAdapter<Topping>(SpecialtyPizzas.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, toppings);
-                        listView.setAdapter(arrayAdapter);
-                        break;
-                    case 2:
-                        pizzaImage.setImageResource(R.drawable.meatzza);
-                        pizzaName = specialPizzas[2];
-                        toppings = MeatzzaPizza.getStandardToppings();
-                        arrayAdapter = new ArrayAdapter<Topping>(SpecialtyPizzas.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, toppings);
-                        listView.setAdapter(arrayAdapter);
-                        break;
-                    case 3:
-                        pizzaImage.setImageResource(R.drawable.seafood);
-                        pizzaName = specialPizzas[3];
-                        toppings = SeafoodPizza.getStandardToppings();
-                        arrayAdapter = new ArrayAdapter<Topping>(SpecialtyPizzas.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, toppings);
-                        listView.setAdapter(arrayAdapter);
-                        break;
-                    case 4:
-                        pizzaImage.setImageResource(R.drawable.pepperoni);
-                        pizzaName = specialPizzas[4];
-                        toppings = PepperoniPizza.getStandardToppings();
-                        arrayAdapter = new ArrayAdapter<Topping>(SpecialtyPizzas.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, toppings);
-                        listView.setAdapter(arrayAdapter);
-                        break;
-                }
-                PizzaMaker pizzaMaker = new PizzaMaker();
-                selectedPizza = pizzaMaker.createPizza(pizzaName);
-            }
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new SpecialtyPizzaAdapter(getApplicationContext(),items));
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         sizeGroup = findViewById(R.id.sizeGroup);
         sizeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // Find the selected radio button
+                selectedPizza = singleton.getPizza();
                 RadioButton selectedSize = group.findViewById(checkedId);
                 String selectedText = selectedSize.getText().toString();
                 selectedPizza.setSize(selectedText);
@@ -118,6 +74,7 @@ public class SpecialtyPizzas extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // Find the selected radio button
+                selectedPizza = singleton.getPizza();
                 RadioButton selectedSauce = group.findViewById(checkedId);
                 String selectedText = selectedSauce.getText().toString();
                 selectedPizza.setSauce(selectedText);
@@ -130,6 +87,7 @@ public class SpecialtyPizzas extends AppCompatActivity {
         extraSauce.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
            @Override
            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+               selectedPizza = singleton.getPizza();
                if(compoundButton.isChecked()){
                    selectedPizza.setExtraSauce(true);
                }
@@ -142,6 +100,7 @@ public class SpecialtyPizzas extends AppCompatActivity {
        extraCheese.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
            @Override
            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+               selectedPizza = singleton.getPizza();
                if(compoundButton.isChecked()){
                    selectedPizza.setExtraCheese(true);
                }
@@ -155,7 +114,8 @@ public class SpecialtyPizzas extends AppCompatActivity {
        placeOrder.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               if(selectedPizza.getSize()==null || selectedPizza.getSauce()==null || spinner.getSelectedItem()==null){
+               selectedPizza = singleton.getPizza();
+               if(selectedPizza.getSize()==null || selectedPizza.getSauce()==null){
                    AlertDialog.Builder builder = new AlertDialog.Builder(SpecialtyPizzas.this);
                    builder.setMessage("Missing information");
                    builder.setTitle("Alert !");

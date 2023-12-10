@@ -14,7 +14,12 @@ import java.util.List;
  * @author Keerthana Talla
  */
 public class StoreOrders {
-    private static int nextOrderNumber = 1;
+
+    public static int getNextOrderNumber() {
+        return nextOrderNumber;
+    }
+
+    private static int nextOrderNumber = 0;
     private List<Order> orders;
 
     /**

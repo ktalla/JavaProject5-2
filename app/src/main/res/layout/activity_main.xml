@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
-        android:text="RU Pizza Store"
+        android:text="@string/ru_pizza_store"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         android:textColor="#000000"
         android:textSize="45sp"
@@ -28,6 +28,7 @@
         android:layout_width="138dp"
         android:layout_height="125dp"
         android:layout_marginEnd="76dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/specialty_pizzas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buildYourOwnButton"
@@ -35,7 +36,7 @@
         app:layout_constraintStart_toStartOf="@+id/storeOrdersButton"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.291"
-        android:scaleType="fitCenter"/>
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/buildYourOwnButton"
@@ -87,7 +88,7 @@
         android:layout_height="25dp"
         android:layout_marginBottom="40dp"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="Specialty Pizzas"
+        android:text="@string/specialty_pizzas"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/storeOrdersButton"
@@ -99,18 +100,18 @@
 
     <TextView
         android:id="@+id/buildYourOwnText"
-        android:layout_width="109dp"
-        android:layout_height="22dp"
+        android:layout_width="139dp"
+        android:layout_height="20dp"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="Build Your Own"
+        android:text="@string/build_your_own"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/yourCartButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.598"
         app:layout_constraintStart_toEndOf="@+id/specialtyPizzasText"
         app:layout_constraintTop_toBottomOf="@+id/buildYourOwnButton"
-        app:layout_constraintVertical_bias="0.141" />
+        app:layout_constraintVertical_bias="0.198" />
 
     <TextView
         android:id="@+id/storeOrdersText"
@@ -118,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="Store Orders"
+        android:text="@string/store_orders"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -135,7 +136,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="76dp"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="View Cart"
+        android:text="@string/view_cart"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"

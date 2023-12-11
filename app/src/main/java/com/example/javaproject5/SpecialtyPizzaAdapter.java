@@ -1,6 +1,7 @@
 package com.example.javaproject5;
 
 import android.content.Context;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +57,8 @@ public class SpecialtyPizzaAdapter extends RecyclerView.Adapter<ViewHolder> {
                singleton.setPizza(selectedPizza);
                Toast toast = Toast.makeText(context.getApplicationContext(), pizzaName + " selected!", Toast.LENGTH_SHORT);
                toast.show();
-
+               SpecialtyPizzas specialtyPizzas = new SpecialtyPizzas();
+               specialtyPizzas.setQuantityToEditable();
             }
         });
     }

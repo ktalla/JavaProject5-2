@@ -45,13 +45,11 @@ public class YourCart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.your_cart);
-
         orderNumber = findViewById(R.id.orderNumberText);
         subTotal = findViewById(R.id.subTotalPriceText);
         salesTax = findViewById(R.id.salesTaxPriceText);
         orderTotal = findViewById(R.id.orderTotalPriceText);
         listView = findViewById(R.id.orderListView);
-
         placeOrder = findViewById(R.id.placeOrderButton);
         removePizza = findViewById(R.id.removeButton);
         clearOrder = findViewById(R.id.clearButton);
@@ -71,66 +69,14 @@ public class YourCart extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
         listView.setAdapter(arrayAdapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
         orderNumber.setText(singleton.getCurrentOrderNum()+"");
 
-        placeOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(singleton.getStoreOrders()!=null){
-                    singleton.getStoreOrders().placeOrder(currOrder);
-                }
-                else{
-                    singleton.initializeStoreOrders(new ArrayList<Order>());
-                    singleton.getStoreOrders().placeOrder(currOrder);
-                }
-                singleton.setOrder(null);
-                pizzaDetails.clear();
-                arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
-                listView.setAdapter(arrayAdapter);
-                listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-                subTotal.setText("0.00");
-                salesTax.setText("0.00");
-                orderTotal.setText("0.00");
-            }
-        });
-
-        removePizza.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int index = listView.getCheckedItemPosition();
-                if (currOrder == null || currOrder.getPizzas().size() == 0)
-                    return;
-                if(index<0)
-                    return;
-                pizzaDetails.remove(index);
-                arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
-                listView.setAdapter(arrayAdapter);
-                listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-                currOrder.removePizza(currOrder.getPizzas().get(index));
-                Log.d("currOrder", ""+currOrder);
-                singleton.setOrder(currOrder);
-                updateDetails();
-            }
-        });
-
-        clearOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pizzaDetails.clear();
-                arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
-                listView.setAdapter(arrayAdapter);
-                currOrder.clearOrder();
-                singleton.setOrder(currOrder);
-                subTotal.setText("0.00");
-                salesTax.setText("0.00");
-                orderTotal.setText("0.00");
-
-            }
-        });
-
+        setUpPlaceOrderListener();
+        setUpRemoveOrderListener();
+        setUpClearOrderListener();
 
     }
+
     private String getPizzaType(Pizza p) {
         if (p instanceof DeluxePizza)
             return ((DeluxePizza) p).getPizzaType();
@@ -156,11 +102,73 @@ public class YourCart extends AppCompatActivity {
             return ((CardiPPizza) p).getPizzaType();
         return "";
     }
+
     private void updateDetails() {
         orderNumber.setText(singleton.getCurrentOrderNum()+"");
         subTotal.setText(df.format(currOrder.getSubtotal()));
         salesTax.setText(df.format(currOrder.getTax()));
         orderTotal.setText(df.format(currOrder.getOrderTotal()));
+    }
+
+    private void setUpClearOrderListener(){
+        clearOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pizzaDetails.clear();
+                arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
+                listView.setAdapter(arrayAdapter);
+                currOrder.clearOrder();
+                singleton.setOrder(currOrder);
+                subTotal.setText("0.00");
+                salesTax.setText("0.00");
+                orderTotal.setText("0.00");
+
+            }
+        });
+    }
+
+    private void setUpRemoveOrderListener(){
+        removePizza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int index = listView.getCheckedItemPosition();
+                if (currOrder == null || currOrder.getPizzas().size() == 0)
+                    return;
+                if(index<0)
+                    return;
+                pizzaDetails.remove(index);
+                arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
+                listView.setAdapter(arrayAdapter);
+                listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+                currOrder.removePizza(currOrder.getPizzas().get(index));
+                Log.d("currOrder", ""+currOrder);
+                singleton.setOrder(currOrder);
+                updateDetails();
+            }
+        });
+    }
+
+    private void setUpPlaceOrderListener(){
+        placeOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(singleton.getStoreOrders()!=null){
+                    singleton.getStoreOrders().placeOrder(currOrder);
+                }
+                else{
+                    singleton.initializeStoreOrders(new ArrayList<Order>());
+                    singleton.getStoreOrders().placeOrder(currOrder);
+                }
+                singleton.setOrder(null);
+                pizzaDetails.clear();
+                arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
+                listView.setAdapter(arrayAdapter);
+                listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+                subTotal.setText("0.00");
+                salesTax.setText("0.00");
+                orderTotal.setText("0.00");
+            }
+        });
     }
 
 }

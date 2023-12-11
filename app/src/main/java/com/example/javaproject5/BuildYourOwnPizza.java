@@ -10,8 +10,6 @@ import java.util.List;
 public class BuildYourOwnPizza extends Pizza {
     private int numOfToppings = 0; //total toppings on pizza
     private static String pizzaType = "BuildYourOwn"; //build your own case string
-    //final static int MIN_TOPPINGS = 3;
-    //final static int MAX_TOPPINGS = 7;
     final static double EXTRA_TOPPINGS_COST = 1.49; //cost for every additional topping
     /**
      * Constructor for BuildYourOwn object
@@ -27,19 +25,6 @@ public class BuildYourOwnPizza extends Pizza {
     public boolean add(Topping topping) {
 
         Topping selectedTopping = topping;
-//
-//        //if maximum # of toppings is reached
-//        if (numOfToppings >= MAX_TOPPINGS) {
-//            return false;
-//        }
-
-        //first 3 toppings are free
-//        if (numOfToppings <= MIN_TOPPINGS) {
-//            this.addTopping(selectedTopping);
-//            numOfToppings = getToppings().size();
-//            System.out.println(numOfToppings + " add");
-//            return true;
-//        }
 
         //over 7 toppings cost extra
         this.addTopping(selectedTopping);

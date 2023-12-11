@@ -6,17 +6,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import android.content.DialogInterface;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -24,6 +28,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
+
+import com.google.android.material.internal.TextWatcherAdapter;
 
 import java.util.ArrayList;
 
@@ -40,6 +46,9 @@ public class SpecialtyPizzas extends AppCompatActivity {
     private Button placeOrder;
     private Pizza selectedPizza;
     private TextView price;
+    private EditText quantity;
+    private int numOfPizzas;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +57,9 @@ public class SpecialtyPizzas extends AppCompatActivity {
         selectedPizza = singleton.getPizza();
         recyclerView = findViewById(R.id.recyclerView);
         sizeGroup=findViewById(R.id.sizeGroup);
+        quantity = findViewById(R.id.editTextNumber);
+        quantity.setText("1");
+        quantity.setEnabled(false);
         price = findViewById(R.id.textViewPrice);
         price.setText(String.format("%.2f", 0.00));
         List<Item> items = new ArrayList<Item>();
@@ -65,6 +77,28 @@ public class SpecialtyPizzas extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new SpecialtyPizzaAdapter(getApplicationContext(),items));
 
+        quantity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                    if(!String.valueOf(editable).isEmpty()) {
+                        numOfPizzas = Integer.parseInt(String.valueOf(editable));
+                        price.setText(String.format("%.2f", numOfPizzas*selectedPizza.price()));
+                    }
+                    else {
+                        numOfPizzas = 1;
+                        price.setText(String.format("%.2f", selectedPizza.price()));
+                    }
+            }
+        });
 
 
         sizeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -76,6 +110,7 @@ public class SpecialtyPizzas extends AppCompatActivity {
                     String selectedText = selectedSize.getText().toString();
                     selectedPizza.setSize(selectedText);
                     price.setText(String.format("%.2f", selectedPizza.price()));
+                    quantity.setEnabled(true);
                 }
                 else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(SpecialtyPizzas.this);
@@ -152,7 +187,7 @@ public class SpecialtyPizzas extends AppCompatActivity {
            @Override
            public void onClick(View view) {
                selectedPizza = singleton.getPizza();
-               if(selectedPizza==null && selectedPizza.getSize()==null){ //null pointer if immedaitely click on place order
+               if(selectedPizza==null || selectedPizza.getSize()==null){ //null pointer if immedaitely click on place order
                    AlertDialog.Builder builder = new AlertDialog.Builder(SpecialtyPizzas.this);
                    builder.setMessage("Missing information");
                    builder.setTitle("Alert !");
@@ -163,13 +198,14 @@ public class SpecialtyPizzas extends AppCompatActivity {
                    alertDialog.show();
                }
                else{
-
                Order order = singleton.getOrder();
                if (order == null) {
                    order = new Order(new ArrayList<Pizza>());
                    singleton.setOrder(order);
                }
-               order.addPizza(selectedPizza);
+               for(int i=1; i<=numOfPizzas; i++) {
+                   order.addPizza(selectedPizza);
+               }
                singleton.setOrder(order);
                //Log.d("Success", singleton.getOrder().toString());
 
@@ -185,6 +221,10 @@ public class SpecialtyPizzas extends AppCompatActivity {
            }
        });
 
+    }
+
+    public void setQuantityToEditable(){
+        quantity.setEnabled(true); //why is this null?
     }
 
 }

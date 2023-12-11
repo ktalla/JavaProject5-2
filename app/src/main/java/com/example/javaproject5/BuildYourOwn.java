@@ -49,89 +49,17 @@ public class BuildYourOwn extends AppCompatActivity {
         selectedPizza = pizzaMaker.createPizza("buildyourown");
         price = findViewById(R.id.price_byo);
         price.setText("0.00");
-
         sizeGroup = findViewById(R.id.sizeGroup);
-        sizeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // Find the selected radio button
-                RadioButton selectedSize = group.findViewById(checkedId);
-                String selectedText = selectedSize.getText().toString();
-                selectedPizza.setSize(selectedText);
-                price.setText(selectedPizza.price()+"");
-            }
-        });
         sauceGroup = findViewById(R.id.sauceGroup);
-        sauceGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // Find the selected radio button
-                RadioButton selectedSauce = group.findViewById(checkedId);
-                String selectedText = selectedSauce.getText().toString();
-                selectedPizza.setSauce(selectedText);
-                //Log.d("Sauce set: ", selectedPizza.getSauce().toString());
-                price.setText(selectedPizza.price()+"");
-            }
-        });
-
         extraSauce = findViewById(R.id.extraSauce);
-        extraSauce.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.setExtraSauce(true);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.setExtraSauce(false);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
         extraCheese = findViewById(R.id.extraCheese);
-        extraCheese.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.setExtraCheese(true);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.setExtraCheese(false);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
-        //Pizza toppings
+        handleSizeGroupAction();
+        handleSauceGroupAction();
+        handleExtraCheeseSauceAction();
         sausage = findViewById(R.id.sausage);
-        sausage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(selectedPizza.getSize()!=null) {
-                    if (compoundButton.isChecked()) {
-                        selectedPizza.add(Topping.SAUSAGE);
-                        price.setText(selectedPizza.price() + "");
-                    } else {
-                        selectedPizza.remove(Topping.SAUSAGE);
-                        price.setText(selectedPizza.price() + "");
-                    }
-                }
-                else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
-                    builder.setMessage("Please select a size");
-                    builder.setTitle("Alert!");
-                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
-                        dialog.cancel();
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
-                }
-            }
-        });
-
+        handleSausageSelection();
         pepperoni = findViewById(R.id.pepperoni);
+
         pepperoni.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -339,6 +267,85 @@ public class BuildYourOwn extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
                     builder.setMessage("Pizza Ordered!");
                     builder.setTitle("Success! Order Number: " + singleton.getCurrentOrderNum());
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+            }
+        });
+    }
+
+    private void handleSizeGroupAction(){
+        sizeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton selectedSize = group.findViewById(checkedId);
+                String selectedText = selectedSize.getText().toString();
+                selectedPizza.setSize(selectedText);
+                price.setText(selectedPizza.price()+"");
+            }
+        });
+    }
+    private void handleSauceGroupAction(){
+        sauceGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton selectedSauce = group.findViewById(checkedId);
+                String selectedText = selectedSauce.getText().toString();
+                selectedPizza.setSauce(selectedText);
+                //Log.d("Sauce set: ", selectedPizza.getSauce().toString());
+                price.setText(selectedPizza.price()+"");
+            }
+        });
+    }
+    private void handleExtraCheeseSauceAction(){
+        extraSauce.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(compoundButton.isChecked()){
+                    selectedPizza.setExtraSauce(true);
+                    price.setText(selectedPizza.price()+"");
+                }
+                else{
+                    selectedPizza.setExtraSauce(false);
+                    price.setText(selectedPizza.price()+"");
+                }
+            }
+        });
+        extraCheese.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(compoundButton.isChecked()){
+                    selectedPizza.setExtraCheese(true);
+                    price.setText(selectedPizza.price()+"");
+                }
+                else{
+                    selectedPizza.setExtraCheese(false);
+                    price.setText(selectedPizza.price()+"");
+                }
+            }
+        });
+    }
+
+    private void handleSausageSelection(){
+        sausage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.SAUSAGE);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.SAUSAGE);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
                     builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
                         dialog.cancel();
                     });

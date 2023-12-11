@@ -135,13 +135,24 @@ public class BuildYourOwn extends AppCompatActivity {
         pepperoni.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.PEPPERONI);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.PEPPERONI);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.PEPPERONI);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.remove(Topping.PEPPERONI);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -150,13 +161,24 @@ public class BuildYourOwn extends AppCompatActivity {
         greenpepper.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.GREEN_PEPPER);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.GREEN_PEPPER);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.GREEN_PEPPER);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.remove(Topping.GREEN_PEPPER);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -165,13 +187,24 @@ public class BuildYourOwn extends AppCompatActivity {
         onion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.ONION);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.ONION);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.ONION);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.remove(Topping.ONION);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -180,13 +213,24 @@ public class BuildYourOwn extends AppCompatActivity {
         mushroom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.MUSHROOM);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.MUSHROOM);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.MUSHROOM);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.remove(Topping.MUSHROOM);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -195,13 +239,24 @@ public class BuildYourOwn extends AppCompatActivity {
         ham.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.HAM);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.HAM);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.HAM);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.remove(Topping.HAM);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -210,13 +265,24 @@ public class BuildYourOwn extends AppCompatActivity {
         olives.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.BLACK_OLIVE);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.BLACK_OLIVE);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.BLACK_OLIVE);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.remove(Topping.BLACK_OLIVE);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -225,13 +291,24 @@ public class BuildYourOwn extends AppCompatActivity {
         beef.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.BEEF);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.BEEF);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.BEEF);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.remove(Topping.BEEF);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -240,13 +317,24 @@ public class BuildYourOwn extends AppCompatActivity {
         shrimp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.SHRIMP);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.SHRIMP);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.SHRIMP);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.remove(Topping.SHRIMP);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -255,13 +343,24 @@ public class BuildYourOwn extends AppCompatActivity {
         crabmeat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.CRAB_MEAT);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.CRAB_MEAT);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.CRAB_MEAT);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.remove(Topping.CRAB_MEAT);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -270,13 +369,24 @@ public class BuildYourOwn extends AppCompatActivity {
         jalapeneos.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.JALAPENOS);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.JALAPENOS);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.JALAPENOS);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.remove(Topping.JALAPENOS);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -285,13 +395,24 @@ public class BuildYourOwn extends AppCompatActivity {
         squid.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.SQUID);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.SQUID);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.SQUID);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.remove(Topping.SQUID);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });
@@ -300,13 +421,24 @@ public class BuildYourOwn extends AppCompatActivity {
         bacon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.BACON);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.BACON);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.BACON);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.remove(Topping.BACON);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
             }
         });

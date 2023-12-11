@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Adapter;
@@ -39,6 +40,7 @@ public class YourCart extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,9 @@ public class YourCart extends AppCompatActivity {
         placeOrder = findViewById(R.id.placeOrderButton);
         removePizza = findViewById(R.id.removeButton);
         clearOrder = findViewById(R.id.clearButton);
+        subTotal.setText(df.format(currOrder.getSubtotal()));
+        salesTax.setText(df.format(currOrder.getTax()));
+        orderTotal.setText(df.format(currOrder.getOrderTotal()));
 
         for(Pizza pizza: currOrder.getPizzas()){
             String details = this.getPizzaType(pizza) + " " + pizza.getSize() + ", ";
@@ -84,23 +89,28 @@ public class YourCart extends AppCompatActivity {
                 arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
                 listView.setAdapter(arrayAdapter);
                 listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+                subTotal.setText("0.00");
+                salesTax.setText("0.00");
+                orderTotal.setText("0.00");
             }
         });
 
         removePizza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int index = listView.getCheckedItemPosition();
                 if (currOrder == null || currOrder.getPizzas().size() == 0)
                     return;
-                int index = listView.getCheckedItemPosition();
-                if(index>0)
+                if(index<0)
                     return;
                 pizzaDetails.remove(index);
                 arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
                 listView.setAdapter(arrayAdapter);
                 listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
                 currOrder.removePizza(currOrder.getPizzas().get(index));
+                Log.d("currOrder", ""+currOrder);
                 singleton.setOrder(currOrder);
+                updateDetails();
             }
         });
 
@@ -112,6 +122,10 @@ public class YourCart extends AppCompatActivity {
                 listView.setAdapter(arrayAdapter);
                 currOrder.clearOrder();
                 singleton.setOrder(currOrder);
+                subTotal.setText("0.00");
+                salesTax.setText("0.00");
+                orderTotal.setText("0.00");
+
             }
         });
 
@@ -128,8 +142,25 @@ public class YourCart extends AppCompatActivity {
             return ((MeatzzaPizza) p).getPizzaType();
         if (p instanceof SeafoodPizza)
             return ((SeafoodPizza) p).getPizzaType();
-//        if (p instanceof BuildYourOwnPizza)
-//            return ((BuildYourOwnPizza) p).getPizzaType();
+        if (p instanceof BuildYourOwnPizza)
+            return ((BuildYourOwnPizza) p).getPizzaType();
+        if(p instanceof LoverboyPizza)
+            return ((LoverboyPizza) p).getPizzaType();
+        if(p instanceof GrandmaPizza)
+            return ((GrandmaPizza) p).getPizzaType();
+        if(p instanceof BaddiePizza)
+            return ((BaddiePizza) p).getPizzaType();
+        if(p instanceof VeggieLoversPizza)
+            return ((VeggieLoversPizza) p).getPizzaType();
+        if(p instanceof CardiPPizza)
+            return ((CardiPPizza) p).getPizzaType();
         return "";
     }
+    private void updateDetails() {
+        orderNumber.setText(singleton.getCurrentOrderNum()+"");
+        subTotal.setText(df.format(currOrder.getSubtotal()));
+        salesTax.setText(df.format(currOrder.getTax()));
+        orderTotal.setText(df.format(currOrder.getOrderTotal()));
+    }
+
 }

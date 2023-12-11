@@ -7,6 +7,15 @@ public class Item {
     String specialtyPizzaName;
     List<Topping> toppings;
     int image;
+    Sauce sauce;
+
+    public Sauce getSauce() {
+        return sauce;
+    }
+
+    public void setSauce(Sauce sauce) {
+        this.sauce = sauce;
+    }
 
     public String getSpecialtyPizzaName() {
         return specialtyPizzaName;
@@ -32,10 +41,11 @@ public class Item {
         this.image = image;
     }
 
-    public Item(String specialtyPizzaName, List<Topping> toppings, int image) {
+    public Item(String specialtyPizzaName, List<Topping> toppings, int image, Sauce sauce) {
         this.specialtyPizzaName = specialtyPizzaName;
         this.toppings = toppings;
         this.image = image;
+        this.sauce = sauce;
     }
 
 

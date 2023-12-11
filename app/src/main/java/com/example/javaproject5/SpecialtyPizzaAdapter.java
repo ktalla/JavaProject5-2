@@ -16,6 +16,7 @@ import java.util.List;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -43,10 +44,9 @@ public class SpecialtyPizzaAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(@NonNull  ViewHolder holder, int position) {
         holder.pizzaTitle.setText(items.get(position).getSpecialtyPizzaName());
         List<Topping> toppings = items.get(position).getToppings();
-        holder.setToppings(toppings);
+        holder.setToppings(toppings, items.get(position).getSauce());
         //holder.toppingsList.setText(items.get(position).getToppings());
         holder.pizzaImage.setImageResource(items.get(position).getImage());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +54,9 @@ public class SpecialtyPizzaAdapter extends RecyclerView.Adapter<ViewHolder> {
                PizzaMaker pizzaMaker = new PizzaMaker();
                Pizza selectedPizza = pizzaMaker.createPizza(pizzaName);
                singleton.setPizza(selectedPizza);
+               Toast toast = Toast.makeText(context.getApplicationContext(), pizzaName + " selected!", Toast.LENGTH_SHORT);
+               toast.show();
+
             }
         });
     }

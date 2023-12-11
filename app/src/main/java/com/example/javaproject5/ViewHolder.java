@@ -37,11 +37,13 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void setToppings(List<Topping> toppings) {
+    public void setToppings(List<Topping> toppings, Sauce sauce) {
         StringBuilder toppingsText = new StringBuilder();
+        toppingsText.append("Toppings: ");
         for (Topping topping : toppings) {
             toppingsText.append(topping.getName(topping)).append(", ");
         }
+        toppingsText.append("Sauce: "+ sauce);
 
         if (toppingsText.length() > 0) {
             toppingsText.delete(toppingsText.length() - 2, toppingsText.length());

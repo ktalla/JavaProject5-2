@@ -1,5 +1,7 @@
 package com.example.javaproject5;
 
+import android.accessibilityservice.AccessibilityService;
+
 /**
  * Class to initialize new pizza based on pizza type
  * @author Ishani Mhatre
@@ -17,8 +19,18 @@ public class PizzaMaker {
                 return new SeafoodPizza();
             case "pepperoni":
                 return new PepperoniPizza();
-//            case "buildyourown":
-//                return new BuildYourOwnPizza();
+            case "buildyourown":
+                return new BuildYourOwnPizza();
+            case "cardip":
+                return new CardiPPizza();
+            case "loverboy":
+                return new LoverboyPizza();
+            case "grandma":
+                return new GrandmaPizza();
+            case "baddie":
+                return new BaddiePizza();
+            case "veggielovers":
+                return new VeggieLoversPizza();
             default:
                 throw new IllegalArgumentException("Invalid pizza type: " + pizzaType);
         }

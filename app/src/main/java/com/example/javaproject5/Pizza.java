@@ -169,29 +169,30 @@ public abstract class Pizza {
 
     }
 
-//    @Override
-//    public String toString() {
-//        String info = "";
-//        if (this instanceof DeluxePizza) {
-//            info += "Deluxe";
-//        } else if (this instanceof SeafoodPizza) {
-//            info += "Seafood";
-//        } else if (this instanceof PepperoniPizza) {
-//            info += "Pepperoni";
-//        } else if (this instanceof SupremePizza) {
-//            info += "Supreme";
-//        } else if (this instanceof MeatzzaPizza) {
-//            info += "Meatzza";
-//        } else if (this instanceof BuildYourOwnPizza) {
-//            info += "Build Your Own";
-//        }
-//        info += " pizza,";
-//        for (Topping t : this.toppings) {
-//            info += (" " + t + ",");
-//        }
-//        info += (" " + size + ",");
-//        info += (" $" + String.format("%.2f", this.price()));
-//        return info;
-//    }
+    @Override
+    public String toString() {
+        String info = "";
+        if (this instanceof DeluxePizza) {
+            info += "Deluxe";
+        } else if (this instanceof SeafoodPizza) {
+            info += "Seafood";
+        } else if (this instanceof PepperoniPizza) {
+            info += "Pepperoni";
+        } else if (this instanceof SupremePizza) {
+            info += "Supreme";
+        } else if (this instanceof MeatzzaPizza) {
+            info += "Meatzza";
+        } else if (this instanceof BuildYourOwnPizza) {
+            info += "Build Your Own";
+        }
+        info += " pizza,";
+        for (Topping t : this.toppings) {
+            info += (" " + t + ",");
+        }
+        info += ("Size: " + size + ",");
+        info +=("Sauce: "+ sauce + ", ");
+        info += (" $" + String.format("%.2f", this.price()));
+        return info;
+    }
 
 }

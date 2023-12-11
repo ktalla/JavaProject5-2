@@ -23,6 +23,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -33,11 +34,12 @@ public class SpecialtyPizzas extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Singleton singleton = Singleton.getInstance();
     private RadioGroup sizeGroup;
-    private RadioGroup sauceGroup;
+
     private CheckBox extraSauce;
     private CheckBox extraCheese;
     private Button placeOrder;
     private Pizza selectedPizza;
+    private TextView price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,42 +47,51 @@ public class SpecialtyPizzas extends AppCompatActivity {
         setContentView(R.layout.specialty_pizzas);
         selectedPizza = singleton.getPizza();
         recyclerView = findViewById(R.id.recyclerView);
+        sizeGroup=findViewById(R.id.sizeGroup);
+        price = findViewById(R.id.textViewPrice);
+        price.setText(String.format("%.2f", 0.00));
         List<Item> items = new ArrayList<Item>();
-        items.add(new Item("Deluxe",DeluxePizza.getStandardToppings(), R.drawable.deluxe));
-        items.add(new Item("Supreme",SupremePizza.getStandardToppings(), R.drawable.supreme));
-        items.add(new Item("Meatzza",MeatzzaPizza.getStandardToppings(), R.drawable.meatzza));
-        items.add(new Item("Pepperoni",PepperoniPizza.getStandardToppings(), R.drawable.pepperoni));
-        items.add(new Item("Seafood",SeafoodPizza.getStandardToppings(), R.drawable.seafood));
+        items.add(new Item("Deluxe",DeluxePizza.getStandardToppings(), R.drawable.deluxe, Sauce.TOMATO));
+        items.add(new Item("Supreme",SupremePizza.getStandardToppings(), R.drawable.supreme, Sauce.TOMATO));
+        items.add(new Item("Meatzza",MeatzzaPizza.getStandardToppings(), R.drawable.meatzza, Sauce.TOMATO));
+        items.add(new Item("Pepperoni",PepperoniPizza.getStandardToppings(), R.drawable.pepperoni, Sauce.TOMATO));
+        items.add(new Item("Seafood",SeafoodPizza.getStandardToppings(), R.drawable.seafood, Sauce.ALFREDO));
+        items.add(new Item("Baddie",BaddiePizza.getStandardToppings(), R.drawable.baddie, Sauce.TOMATO));
+        items.add(new Item("VeggieLovers",VeggieLoversPizza.getStandardToppings(), R.drawable.veggielovers, Sauce.TOMATO));
+        items.add(new Item("Grandma",GrandmaPizza.getStandardToppings(), R.drawable.grandma, Sauce.ALFREDO));
+        items.add(new Item("Loverboy",LoverboyPizza.getStandardToppings(), R.drawable.loverboy, Sauce.TOMATO));
+        items.add(new Item("CardiP",CardiPPizza.getStandardToppings(), R.drawable.cardip, Sauce.ALFREDO));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new SpecialtyPizzaAdapter(getApplicationContext(),items));
 
 
-        sizeGroup = findViewById(R.id.sizeGroup);
+
         sizeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // Find the selected radio button
                 selectedPizza = singleton.getPizza();
-                RadioButton selectedSize = group.findViewById(checkedId);
-                String selectedText = selectedSize.getText().toString();
-                selectedPizza.setSize(selectedText);
-
+                if(selectedPizza!=null) {
+                    RadioButton selectedSize = group.findViewById(checkedId);
+                    String selectedText = selectedSize.getText().toString();
+                    selectedPizza.setSize(selectedText);
+                    price.setText(String.format("%.2f", selectedPizza.price()));
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SpecialtyPizzas.this);
+                    builder.setMessage("Select a pizza!");
+                    builder.setTitle("Alert !");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
             }
         });
 
-        sauceGroup = findViewById(R.id.sauceGroup);
-        sauceGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // Find the selected radio button
-                selectedPizza = singleton.getPizza();
-                RadioButton selectedSauce = group.findViewById(checkedId);
-                String selectedText = selectedSauce.getText().toString();
-                selectedPizza.setSauce(selectedText);
 
-            }
-        });
+
 
         extraSauce = findViewById(R.id.extraSauce);
         extraCheese = findViewById(R.id.extraCheese);
@@ -88,11 +99,24 @@ public class SpecialtyPizzas extends AppCompatActivity {
            @Override
            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                selectedPizza = singleton.getPizza();
-               if(compoundButton.isChecked()){
-                   selectedPizza.setExtraSauce(true);
+               if(selectedPizza!=null && selectedPizza.getSize()!=null) {
+                   if (compoundButton.isChecked()) {
+                       selectedPizza.setExtraSauce(true);
+                       price.setText(String.format("%.2f", selectedPizza.price()));
+                   } else {
+                       selectedPizza.setExtraSauce(false);
+                       price.setText(String.format("%.2f", selectedPizza.price()));
+                   }
                }
                else{
-                   selectedPizza.setExtraSauce(false);
+                   AlertDialog.Builder builder = new AlertDialog.Builder(SpecialtyPizzas.this);
+                   builder.setMessage("Select a Pizza and a size!");
+                   builder.setTitle("Alert !");
+                   builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                       dialog.cancel();
+                   });
+                   AlertDialog alertDialog = builder.create();
+                   alertDialog.show();
                }
            }
        });
@@ -101,11 +125,24 @@ public class SpecialtyPizzas extends AppCompatActivity {
            @Override
            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                selectedPizza = singleton.getPizza();
-               if(compoundButton.isChecked()){
-                   selectedPizza.setExtraCheese(true);
+               if(selectedPizza!=null && selectedPizza.getSize()!=null) {
+                   if (compoundButton.isChecked()) {
+                       selectedPizza.setExtraCheese(true);
+                       price.setText(String.format("%.2f", selectedPizza.price()));
+                   } else {
+                       selectedPizza.setExtraCheese(false);
+                       price.setText(String.format("%.2f", selectedPizza.price()));
+                   }
                }
                else{
-                   selectedPizza.setExtraCheese(false);
+                   AlertDialog.Builder builder = new AlertDialog.Builder(SpecialtyPizzas.this);
+                   builder.setMessage("Select a Pizza and size!");
+                   builder.setTitle("Alert !");
+                   builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                       dialog.cancel();
+                   });
+                   AlertDialog alertDialog = builder.create();
+                   alertDialog.show();
                }
            }
        });
@@ -115,7 +152,7 @@ public class SpecialtyPizzas extends AppCompatActivity {
            @Override
            public void onClick(View view) {
                selectedPizza = singleton.getPizza();
-               if(selectedPizza.getSize()==null || selectedPizza.getSauce()==null){
+               if(selectedPizza==null && selectedPizza.getSize()==null){ //null pointer if immedaitely click on place order
                    AlertDialog.Builder builder = new AlertDialog.Builder(SpecialtyPizzas.this);
                    builder.setMessage("Missing information");
                    builder.setTitle("Alert !");
@@ -149,4 +186,5 @@ public class SpecialtyPizzas extends AppCompatActivity {
        });
 
     }
+
 }

@@ -1,6 +1,7 @@
 package com.example.javaproject5;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.ObservableList;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,7 +26,8 @@ public class StoreOrdersActivity extends AppCompatActivity {
     private Spinner spinner;
     private ArrayList<Integer> orderNum = new ArrayList<>();
     private Singleton singleton = Singleton.getInstance();
-    ArrayAdapter<Pizza> arrayAdapter;
+    ArrayAdapter<String> arrayAdapter;
+    private static final DecimalFormat df = new DecimalFormat( "#.00" ); //formatting code
 
 
     @Override
@@ -39,7 +43,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
 
         cancelOrder = findViewById(R.id.cancelOrderButton);
         listview = findViewById(R.id.storeOrdersListView);
-        arrayAdapter = new ArrayAdapter<Pizza>(StoreOrdersActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new ArrayList<>());
+        arrayAdapter = new ArrayAdapter<String>(StoreOrdersActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new ArrayList<>());
         listview.setAdapter(arrayAdapter);
         price = findViewById(R.id.orderTotalPrice);
         spinner = findViewById(R.id.spinnerOrder);
@@ -60,7 +64,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
                 }
 
                 singleton.setStoreOrders(storeOrders);
-                arrayAdapter = new ArrayAdapter<Pizza>(StoreOrdersActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new ArrayList<>());
+                arrayAdapter = new ArrayAdapter<String>(StoreOrdersActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new ArrayList<>());
                 listview.setAdapter(arrayAdapter);
                 orderNum.clear();
                 if(singleton.getStoreOrders()!=null && singleton.getStoreOrders().getOrders()!=null) {
@@ -81,8 +85,19 @@ public class StoreOrdersActivity extends AppCompatActivity {
                 int index = spinner.getSelectedItemPosition();
                 StoreOrders storeOrders = singleton.getStoreOrders();
                 Order order = storeOrders.getOrders().get(index);
-                arrayAdapter = new ArrayAdapter<Pizza>(StoreOrdersActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, order.getPizzas());
+                ArrayList<String> pizzaDetails = new ArrayList<String>();
+                for (Pizza p: order.getPizzas()) {
+                    String details = getPizzaType(p) + " " + p.getSize() + ", ";
+                    details += p.getSauce().toString() + ", Toppings: ";
+                    for (Topping tp: p.getToppings())
+                        details += tp.toString() + ", ";
+                    details += "$" + p.price();
+                    pizzaDetails.add(details);
+                }
+                arrayAdapter = new ArrayAdapter<String>(StoreOrdersActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
                 listview.setAdapter(arrayAdapter);
+                price.setText(df.format(order.getOrderTotal()));
+
 
             }
 
@@ -91,5 +106,31 @@ public class StoreOrdersActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private String getPizzaType(Pizza p) {
+        if (p instanceof DeluxePizza)
+            return ((DeluxePizza) p).getPizzaType();
+        if (p instanceof SupremePizza)
+            return ((SupremePizza) p).getPizzaType();
+        if (p instanceof PepperoniPizza)
+            return ((PepperoniPizza) p).getPizzaType();
+        if (p instanceof MeatzzaPizza)
+            return ((MeatzzaPizza) p).getPizzaType();
+        if (p instanceof SeafoodPizza)
+            return ((SeafoodPizza) p).getPizzaType();
+        if (p instanceof BuildYourOwnPizza)
+            return ((BuildYourOwnPizza) p).getPizzaType();
+        if(p instanceof LoverboyPizza)
+            return ((LoverboyPizza) p).getPizzaType();
+        if(p instanceof GrandmaPizza)
+            return ((GrandmaPizza) p).getPizzaType();
+        if(p instanceof BaddiePizza)
+            return ((BaddiePizza) p).getPizzaType();
+        if(p instanceof VeggieLoversPizza)
+            return ((VeggieLoversPizza) p).getPizzaType();
+        if(p instanceof CardiPPizza)
+            return ((CardiPPizza) p).getPizzaType();
+        return "";
     }
 }

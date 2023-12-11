@@ -32,7 +32,11 @@ import android.widget.TextView;
 import com.google.android.material.internal.TextWatcherAdapter;
 
 import java.util.ArrayList;
-
+/**
+ * Class that has SpecialtyPizzas and allows User to add them to their order
+ * @author Ishani Mhatre
+ * @author Keerthana Talla
+ */
 public class SpecialtyPizzas extends AppCompatActivity {
 
 

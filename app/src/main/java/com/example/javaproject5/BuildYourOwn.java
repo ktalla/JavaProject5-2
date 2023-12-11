@@ -17,6 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+/**
+ * Class that allows user to create a buildyourown pizza
+ * @author Ishani Mhatre
+ * @author Keerthana Talla
+ */
 public class BuildYourOwn extends AppCompatActivity {
     private RadioGroup sizeGroup;
     private Pizza selectedPizza;

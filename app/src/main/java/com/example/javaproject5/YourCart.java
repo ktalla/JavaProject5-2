@@ -16,7 +16,11 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
+/**
+ * Class that holds all the pizzas of a current order
+ * @author Ishani Mhatre
+ * @author Keerthana Talla
+ */
 public class YourCart extends AppCompatActivity {
 
     TextView orderNumber;

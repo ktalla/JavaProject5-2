@@ -16,7 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * ViewHolder Class that is required for the RecyclerView
+ * @author Keerthana Talla
+ */
 public class ViewHolder extends RecyclerView.ViewHolder {
 
 //    private static final String[] specialPizzas = {"Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni"};

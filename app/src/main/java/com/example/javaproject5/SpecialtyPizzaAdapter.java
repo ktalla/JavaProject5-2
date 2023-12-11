@@ -23,6 +23,10 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+/**
+ * Adapter needed for RecyclerView
+ * @author Keerthana Talla
+ */
 
 public class SpecialtyPizzaAdapter extends RecyclerView.Adapter<ViewHolder> {
 

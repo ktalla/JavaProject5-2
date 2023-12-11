@@ -18,7 +18,11 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+/**
+ * Class handles the orders in the storeOrders
+ * @author Ishani Mhatre
+ * @author Keerthana Talla
+ */
 public class StoreOrdersActivity extends AppCompatActivity {
     private Button cancelOrder;
     private ListView listview;

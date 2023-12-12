@@ -10,7 +10,10 @@ import java.util.List;
 public class BuildYourOwnPizza extends Pizza {
     private int numOfToppings = 0; //total toppings on pizza
     private static String pizzaType = "BuildYourOwn"; //build your own case string
+    //final static int MIN_TOPPINGS = 3;
+    //final static int MAX_TOPPINGS = 7;
     final static double EXTRA_TOPPINGS_COST = 1.49; //cost for every additional topping
+
     /**
      * Constructor for BuildYourOwn object
      */
@@ -18,13 +21,28 @@ public class BuildYourOwnPizza extends Pizza {
         super();
     }
 
-    /** This method adds a topping to BuildYourOwn pizza.
+    /**
+     * This method adds a topping to BuildYourOwn pizza.
+     *
      * @param topping options for pizza based on user input
      * @return boolean true if topping is added, false otherwise
      */
     public boolean add(Topping topping) {
 
         Topping selectedTopping = topping;
+//
+//        //if maximum # of toppings is reached
+//        if (numOfToppings >= MAX_TOPPINGS) {
+//            return false;
+//        }
+
+        //first 3 toppings are free
+//        if (numOfToppings <= MIN_TOPPINGS) {
+//            this.addTopping(selectedTopping);
+//            numOfToppings = getToppings().size();
+//            System.out.println(numOfToppings + " add");
+//            return true;
+//        }
 
         //over 7 toppings cost extra
         this.addTopping(selectedTopping);
@@ -35,6 +53,7 @@ public class BuildYourOwnPizza extends Pizza {
 
     /**
      * Removes toppings from topping array list
+     *
      * @param topping
      * @return true or false
      */
@@ -48,6 +67,7 @@ public class BuildYourOwnPizza extends Pizza {
 
     /**
      * This method calculate the price of BuildYourOwn pizza.
+     *
      * @return double cost of BuildYourOwn pizza
      */
     @Override
@@ -56,7 +76,7 @@ public class BuildYourOwnPizza extends Pizza {
 
         //set price based on size
         Size sizeOfPizza = getSize();
-        switch(sizeOfPizza) {
+        switch (sizeOfPizza) {
             case SMALL:
                 cost = 8.99;
                 break;
@@ -75,9 +95,13 @@ public class BuildYourOwnPizza extends Pizza {
 
         return (cost + hasExtraCheeseSauce());
     }
+
     /**
      * Gets pizza type of this object
+     *
      * @return pizza type as a string
      */
-    public String getPizzaType() {return pizzaType;}
+    public String getPizzaType() {
+        return pizzaType;
+    }
 }

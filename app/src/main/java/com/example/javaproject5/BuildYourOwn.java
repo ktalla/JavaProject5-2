@@ -45,6 +45,10 @@ public class BuildYourOwn extends AppCompatActivity {
     private CheckBox bacon;
     private Singleton singleton = Singleton.getInstance();
 
+    /**
+     * Method to handle activity for this page
+     * @param savedInstanceState based on user input
+     */
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +95,9 @@ public class BuildYourOwn extends AppCompatActivity {
         handlePlaceOrderAction();
     }
 
+    /**
+     * Method to change size based on user input and update pizza price
+     */
     private void handleSizeGroupAction(){
         sizeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -102,6 +109,10 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to change sauce based on user input and update pizza price
+     */
     private void handleSauceGroupAction(){
         sauceGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -110,10 +121,15 @@ public class BuildYourOwn extends AppCompatActivity {
                 String selectedText = selectedSauce.getText().toString();
                 selectedPizza.setSauce(selectedText);
                 //Log.d("Sauce set: ", selectedPizza.getSauce().toString());
-               // price.setText(selectedPizza.price() + "");
+                // price.setText(selectedPizza.price() + "");
             }
         });
     }
+
+    /**
+     * Method to change option for extra cheese and sauce based on user input
+     * Updates the price accordingly
+     */
     private void handleExtraCheeseSauceAction(){
         extraSauce.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -141,6 +157,12 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
         extraCheese.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            /**
+             * Method to set extra cheese as true or false and change price
+             * @param compoundButton radio group
+             * @param b true or false
+             */
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(selectedPizza.getSize()!=null) {
@@ -167,6 +189,10 @@ public class BuildYourOwn extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method to add sausage to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handleSausageSelection(){
         sausage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -194,6 +220,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to add pepperoni to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handlePepperoniSelection(){
         pepperoni.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -221,6 +252,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to add green pepper to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handleGreenPepperSelection(){
         greenpepper.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -248,6 +284,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to add onion to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handleOnionSelection(){
         onion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -275,6 +316,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to add mushroom to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handleMushroomSelection(){
         mushroom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -302,6 +348,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to add ham to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handleHamSelection(){
         ham.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -329,6 +380,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to add black olives to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handleOlivesSelection(){
         olives.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -356,6 +412,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to add beef to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handleBeefSelection(){
         beef.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -383,6 +444,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to add shrimp to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handleShrimpSelection(){
         shrimp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -410,6 +476,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to add crab meat to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handleCrabMeatSelection(){
         crabmeat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -437,6 +508,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to add jalapeno to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handleJalapenosSelection(){
         jalapeneos.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -464,6 +540,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to add squid to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handleSquidSelection(){
         squid.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -491,6 +572,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to add bacon to topping array for pizza based on user input
+     * Creates alert if size is not selected before
+     */
     private void handleBaconSelection(){
         bacon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -518,6 +604,11 @@ public class BuildYourOwn extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Method to place order based on user input
+     * Alerts will appear if there are any errors such as insufficient information
+     */
     private void handlePlaceOrderAction(){
         placeOrder.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -66,7 +66,7 @@ public class StoreOrders {
     }
 
 
-      /**
+    /**
      * Method to export total orders to txt file
      */
     public void exportOrdersToFile() {

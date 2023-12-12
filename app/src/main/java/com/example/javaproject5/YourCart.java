@@ -43,8 +43,10 @@ public class YourCart extends AppCompatActivity {
     private Button clearOrder;
 
 
-
-
+    /**
+     * Method to control all activity on page
+     * @param savedInstanceState based on user input
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +69,6 @@ public class YourCart extends AppCompatActivity {
                 for(Topping tp: pizza.getToppings()){
                     details+= tp.toString() + ", ";
                 }
-                details+= "$" + pizza.price();
                 pizzaDetails.add(details);
             }
             arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
@@ -87,6 +88,11 @@ public class YourCart extends AppCompatActivity {
 
     }
 
+    /**
+     * returns correct instance of pizza type
+     * @param p pizza object
+     * @return pizza type
+     */
     private String getPizzaType(Pizza p) {
         if (p instanceof DeluxePizza)
             return ((DeluxePizza) p).getPizzaType();
@@ -113,6 +119,9 @@ public class YourCart extends AppCompatActivity {
         return "";
     }
 
+    /**
+     * updates details of order with subtotal, tax, and order total
+     */
     private void updateDetails() {
         orderNumber.setText(singleton.getCurrentOrderNum()+"");
         subTotal.setText(df.format(currOrder.getSubtotal()));
@@ -120,6 +129,9 @@ public class YourCart extends AppCompatActivity {
         orderTotal.setText(df.format(currOrder.getOrderTotal()));
     }
 
+    /**
+     * Method to clear pizza details and singleton instance based on user input
+     */
     private void setUpClearOrderListener(){
         clearOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +149,9 @@ public class YourCart extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method to remove pizza from order based on user input
+     */
     private void setUpRemoveOrderListener(){
         removePizza.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +173,9 @@ public class YourCart extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method to get and place store order based on user input
+     */
     private void setUpPlaceOrderListener(){
         placeOrder.setOnClickListener(new View.OnClickListener() {
             @Override

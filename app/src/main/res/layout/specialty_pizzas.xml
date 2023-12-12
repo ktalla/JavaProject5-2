@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:windowSoftInputMode="adjustPan"
+    android:background="#FFD25A"
     tools:context=".SpecialtyPizzas">
 
     <TextView
@@ -14,11 +15,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-
         android:fontFamily="serif"
-        android:text="Specialty Pizzas"
+        android:text="@string/specialty_pizzas"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:textColor="#000000"
+        android:textColor="#011936"
         android:textSize="45sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +42,7 @@
         android:id="@+id/extraCheese"
         android:layout_width="128dp"
         android:layout_height="48dp"
-        android:text="Extra Cheese"
+        android:text="@string/extra_cheese"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
@@ -54,7 +54,7 @@
         android:id="@+id/extraSauce"
         android:layout_width="130dp"
         android:layout_height="48dp"
-        android:text="Extra Sauce"
+        android:text="@string/extra_sauce"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.092"
@@ -66,7 +66,8 @@
         android:id="@+id/specialtyOrderButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Place Order"
+        android:text="@string/add_to_cart"
+        app:backgroundTint="#011936"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.459"
@@ -89,19 +90,19 @@
             android:id="@+id/radioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Small" />
+            android:text="@string/small" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medium" />
+            android:text="@string/medium" />
 
         <RadioButton
             android:id="@+id/radioButton4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Large" />
+            android:text="@string/large" />
     </RadioGroup>
 
 
@@ -109,7 +110,7 @@
         android:id="@+id/textViewPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/emptyMoney"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,7 +123,7 @@
         android:id="@+id/priceTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Price: "
+        android:text="@string/price"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -134,8 +135,10 @@
     <EditText
         android:id="@+id/editTextNumber"
         android:layout_width="74dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/starting_number_1"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -148,7 +151,7 @@
         android:id="@+id/textViewQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quantity:"
+        android:text="@string/quantity"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

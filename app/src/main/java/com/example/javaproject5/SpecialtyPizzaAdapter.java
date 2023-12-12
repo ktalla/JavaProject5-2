@@ -61,8 +61,6 @@ public class SpecialtyPizzaAdapter extends RecyclerView.Adapter<ViewHolder> {
                singleton.setPizza(selectedPizza);
                Toast toast = Toast.makeText(context.getApplicationContext(), pizzaName + " selected!", Toast.LENGTH_SHORT);
                toast.show();
-               SpecialtyPizzas specialtyPizzas = new SpecialtyPizzas();
-               specialtyPizzas.setQuantityToEditable();
             }
         });
     }

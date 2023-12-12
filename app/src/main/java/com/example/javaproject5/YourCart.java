@@ -57,27 +57,33 @@ public class YourCart extends AppCompatActivity {
         placeOrder = findViewById(R.id.placeOrderButton);
         removePizza = findViewById(R.id.removeButton);
         clearOrder = findViewById(R.id.clearButton);
-        subTotal.setText(df.format(currOrder.getSubtotal()));
-        salesTax.setText(df.format(currOrder.getTax()));
-        orderTotal.setText(df.format(currOrder.getOrderTotal()));
-
-        for(Pizza pizza: currOrder.getPizzas()){
-            String details = this.getPizzaType(pizza) + " " + pizza.getSize() + ", ";
-            details+= pizza.getSauce().toString() + ", Toppings: ";
-            for(Topping tp: pizza.getToppings()){
-                details+= tp.toString() + ", ";
+        if(currOrder!=null) {
+            subTotal.setText(df.format(currOrder.getSubtotal()));
+            salesTax.setText(df.format(currOrder.getTax()));
+            orderTotal.setText(df.format(currOrder.getOrderTotal()));
+            for(Pizza pizza: currOrder.getPizzas()){
+                String details = this.getPizzaType(pizza) + " " + pizza.getSize() + ", ";
+                details+= pizza.getSauce().toString() + ", Toppings: ";
+                for(Topping tp: pizza.getToppings()){
+                    details+= tp.toString() + ", ";
+                }
+                details+= "$" + pizza.price();
+                pizzaDetails.add(details);
             }
-            details+= "$" + pizza.price();
-            pizzaDetails.add(details);
-        }
-        arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
-        listView.setAdapter(arrayAdapter);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        orderNumber.setText(singleton.getCurrentOrderNum()+"");
+            arrayAdapter = new ArrayAdapter<String>(YourCart.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzaDetails);
+            listView.setAdapter(arrayAdapter);
+            listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+            orderNumber.setText(singleton.getCurrentOrderNum()+"");
 
-        setUpPlaceOrderListener();
-        setUpRemoveOrderListener();
-        setUpClearOrderListener();
+            setUpPlaceOrderListener();
+            setUpRemoveOrderListener();
+            setUpClearOrderListener();
+        }
+        else{
+            subTotal.setText("0.00");
+            salesTax.setText("0.00");
+            orderTotal.setText("0.00");
+        }
 
     }
 

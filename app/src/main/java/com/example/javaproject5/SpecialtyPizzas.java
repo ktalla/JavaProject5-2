@@ -51,7 +51,8 @@ public class SpecialtyPizzas extends AppCompatActivity {
     private Pizza selectedPizza;
     private TextView price;
     private EditText quantity;
-    private int numOfPizzas;
+    private int numOfPizzas =1;
+    private boolean programmaticClear = false;
 
 
     @Override
@@ -77,33 +78,27 @@ public class SpecialtyPizzas extends AppCompatActivity {
         items.add(new Item("Grandma",GrandmaPizza.getStandardToppings(), R.drawable.grandma, Sauce.ALFREDO));
         items.add(new Item("Loverboy",LoverboyPizza.getStandardToppings(), R.drawable.loverboy, Sauce.TOMATO));
         items.add(new Item("CardiP",CardiPPizza.getStandardToppings(), R.drawable.cardip, Sauce.ALFREDO));
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new SpecialtyPizzaAdapter(getApplicationContext(),items));
-
         quantity.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
-
             @Override
             public void afterTextChanged(Editable editable) {
-                    if(!String.valueOf(editable).isEmpty()) {
-                        numOfPizzas = Integer.parseInt(String.valueOf(editable));
-                        price.setText(String.format("%.2f", numOfPizzas*selectedPizza.price()));
-                    }
-                    else {
-                        numOfPizzas = 1;
-                        price.setText(String.format("%.2f", selectedPizza.price()));
-                    }
+                if(!String.valueOf(editable).isEmpty()) {
+                    numOfPizzas = Integer.parseInt(String.valueOf(editable));
+                    price.setText(String.format("%.2f", numOfPizzas*selectedPizza.price()));
+                }
+                else {
+                    numOfPizzas = 1;
+                    price.setText(String.format("%.2f", selectedPizza.price()));
+                }
             }
         });
-
 
         sizeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -117,6 +112,11 @@ public class SpecialtyPizzas extends AppCompatActivity {
                     quantity.setEnabled(true);
                 }
                 else{
+                    if (!programmaticClear) {
+                        programmaticClear = true;
+                        group.clearCheck();
+                        programmaticClear = false;
+                    }
                     AlertDialog.Builder builder = new AlertDialog.Builder(SpecialtyPizzas.this);
                     builder.setMessage("Select a pizza!");
                     builder.setTitle("Alert !");
@@ -128,9 +128,6 @@ public class SpecialtyPizzas extends AppCompatActivity {
                 }
             }
         });
-
-
-
 
         extraSauce = findViewById(R.id.extraSauce);
         extraCheese = findViewById(R.id.extraCheese);
@@ -156,10 +153,10 @@ public class SpecialtyPizzas extends AppCompatActivity {
                    });
                    AlertDialog alertDialog = builder.create();
                    alertDialog.show();
+                   extraSauce.setChecked(false);
                }
            }
        });
-
        extraCheese.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
            @Override
            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -182,6 +179,7 @@ public class SpecialtyPizzas extends AppCompatActivity {
                    });
                    AlertDialog alertDialog = builder.create();
                    alertDialog.show();
+                   extraCheese.setChecked(false);
                }
            }
        });
@@ -225,10 +223,6 @@ public class SpecialtyPizzas extends AppCompatActivity {
            }
        });
 
-    }
-
-    public void setQuantityToEditable(){
-        quantity.setEnabled(true); //why is this null?
     }
 
 }

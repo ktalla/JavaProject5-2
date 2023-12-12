@@ -64,222 +64,31 @@ public class BuildYourOwn extends AppCompatActivity {
         sausage = findViewById(R.id.sausage);
         handleSausageSelection();
         pepperoni = findViewById(R.id.pepperoni);
-
-        pepperoni.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.PEPPERONI);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.remove(Topping.PEPPERONI);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
+        handlePepperoniSelection();
         greenpepper = findViewById(R.id.greenpepper);
-        greenpepper.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.GREEN_PEPPER);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.remove(Topping.GREEN_PEPPER);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
+        handleGreenPepperSelection();
         onion = findViewById(R.id.onion);
-        onion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.ONION);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.remove(Topping.ONION);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
+        handleOnionSelection();
         mushroom = findViewById(R.id.mushroom);
-        mushroom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.MUSHROOM);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.remove(Topping.MUSHROOM);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
+        handleMushroomSelection();
         ham = findViewById(R.id.ham);
-        ham.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.HAM);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.remove(Topping.HAM);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
+        handleHamSelection();
         olives = findViewById(R.id.olives);
-        olives.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.BLACK_OLIVE);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.remove(Topping.BLACK_OLIVE);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
+        handleOlivesSelection();
         beef = findViewById(R.id.beef);
-        beef.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.BEEF);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.remove(Topping.BEEF);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
+        handleBeefSelection();
         shrimp = findViewById(R.id.shrimp);
-        shrimp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.SHRIMP);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.remove(Topping.SHRIMP);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
+        handleShrimpSelection();
         crabmeat = findViewById(R.id.crabmeat);
-        crabmeat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.CRAB_MEAT);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.remove(Topping.CRAB_MEAT);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
+        handleCrabMeatSelection();
         jalapeneos = findViewById(R.id.jalapenos);
-        jalapeneos.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.JALAPENOS);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.remove(Topping.JALAPENOS);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
+        handleJalapenosSelection();
         squid = findViewById(R.id.squid);
-        squid.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.SQUID);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.remove(Topping.SQUID);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
+        handleSquidSelection();
         bacon = findViewById(R.id.bacon);
-        bacon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.add(Topping.BACON);
-                    price.setText(selectedPizza.price()+"");
-                }
-                else{
-                    selectedPizza.remove(Topping.BACON);
-                    price.setText(selectedPizza.price()+"");
-                }
-            }
-        });
-
-        //Place Order
+        handleBaconSelection();
         placeOrder = findViewById(R.id.buildYourOwn_placeOrder);
-        placeOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Topping array", selectedPizza.toString()+"");
-                if (selectedPizza.getSize()==null || selectedPizza.getSauce()==null || selectedPizza.getToppings().size() < 3 || selectedPizza.getToppings().size() > 7) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
-                    builder.setMessage("Please select a size, sauce, and 3-7 toppings.");
-                    builder.setTitle("Alert!");
-                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
-                        dialog.cancel();
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
-                } else {
-                    Order order = singleton.getOrder();
-                    if (order == null) {
-                        order = new Order(new ArrayList<Pizza>());
-                        singleton.setOrder(order);
-                    }
-                    order.addPizza(selectedPizza);
-                    singleton.setOrder(order);
-                    //Log.d("Success", singleton.getOrder().toString());
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
-                    builder.setMessage("Pizza Ordered!");
-                    builder.setTitle("Success! Order Number: " + singleton.getCurrentOrderNum());
-                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
-                        dialog.cancel();
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
-                }
-            }
-        });
+        handlePlaceOrderAction();
     }
 
     private void handleSizeGroupAction(){
@@ -301,7 +110,7 @@ public class BuildYourOwn extends AppCompatActivity {
                 String selectedText = selectedSauce.getText().toString();
                 selectedPizza.setSauce(selectedText);
                 //Log.d("Sauce set: ", selectedPizza.getSauce().toString());
-                price.setText(selectedPizza.price()+"");
+               // price.setText(selectedPizza.price() + "");
             }
         });
     }
@@ -309,26 +118,50 @@ public class BuildYourOwn extends AppCompatActivity {
         extraSauce.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.setExtraSauce(true);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.setExtraSauce(true);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.setExtraSauce(false);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.setExtraSauce(false);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    extraSauce.setChecked(false);
                 }
             }
         });
         extraCheese.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()){
-                    selectedPizza.setExtraCheese(true);
-                    price.setText(selectedPizza.price()+"");
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.setExtraCheese(true);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.setExtraCheese(false);
+                        price.setText(selectedPizza.price() + "");
+                    }
                 }
                 else{
-                    selectedPizza.setExtraCheese(false);
-                    price.setText(selectedPizza.price()+"");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    extraCheese.setChecked(false);
                 }
             }
         });
@@ -351,6 +184,366 @@ public class BuildYourOwn extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
                     builder.setMessage("Please select a size");
                     builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    sausage.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handlePepperoniSelection(){
+        pepperoni.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.PEPPERONI);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.PEPPERONI);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    pepperoni.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handleGreenPepperSelection(){
+        greenpepper.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.GREEN_PEPPER);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.GREEN_PEPPER);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    greenpepper.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handleOnionSelection(){
+        onion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.ONION);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.ONION);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    onion.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handleMushroomSelection(){
+        mushroom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.MUSHROOM);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.MUSHROOM);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    mushroom.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handleHamSelection(){
+        ham.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.HAM);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.HAM);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    ham.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handleOlivesSelection(){
+        olives.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.BLACK_OLIVE);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.BLACK_OLIVE);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    olives.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handleBeefSelection(){
+        beef.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.BEEF);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.BEEF);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    beef.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handleShrimpSelection(){
+        shrimp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.SHRIMP);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.SHRIMP);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    shrimp.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handleCrabMeatSelection(){
+        crabmeat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.CRAB_MEAT);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.CRAB_MEAT);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    crabmeat.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handleJalapenosSelection(){
+        jalapeneos.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.JALAPENOS);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.JALAPENOS);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    jalapeneos.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handleSquidSelection(){
+        squid.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.SQUID);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.SQUID);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    squid.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handleBaconSelection(){
+        bacon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(selectedPizza.getSize()!=null) {
+                    if (compoundButton.isChecked()) {
+                        selectedPizza.add(Topping.BACON);
+                        price.setText(selectedPizza.price() + "");
+                    } else {
+                        selectedPizza.remove(Topping.BACON);
+                        price.setText(selectedPizza.price() + "");
+                    }
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                    bacon.setChecked(false);
+                }
+            }
+        });
+    }
+    private void handlePlaceOrderAction(){
+        placeOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedPizza.getSize()==null || selectedPizza.getSauce()==null || selectedPizza.getToppings().size() < 3 || selectedPizza.getToppings().size() > 7) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Please select a size, sauce, and 3-7 toppings.");
+                    builder.setTitle("Alert!");
+                    builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
+                        dialog.cancel();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                } else {
+                    Order order = singleton.getOrder();
+                    if (order == null) {
+                        order = new Order(new ArrayList<Pizza>());
+                        singleton.setOrder(order);
+                    }
+                    order.addPizza(selectedPizza);
+                    singleton.setOrder(order);
+                    //Log.d("Success", singleton.getOrder().toString());
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwn.this);
+                    builder.setMessage("Pizza Ordered!");
+                    builder.setTitle("Success! Order Number: " + singleton.getCurrentOrderNum());
                     builder.setNeutralButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
                         dialog.cancel();
                     });
